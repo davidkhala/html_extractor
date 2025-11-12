@@ -1,13 +1,13 @@
 identity:
-  name: dify_extractor
+  name: html_extractor
   author: davidkhala
   label:
-    en_US: Dify Extractor
-    zh_Hans: Dify文本提取器
+    en_US: HTML Extractor
+    zh_Hans: HTML 文本提取器
 description:
   human:
-    en_US: Dify Extractor
-  llm: Dify Extractor
+    en_US: HTML Extractor
+  llm: HTML Extractor
 parameters:
   - name: html
     type: string
