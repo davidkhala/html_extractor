@@ -8,33 +8,21 @@ from tools.document import Document, ExtractorResult
 
 class HtmlExtractor(BaseExtractor):
     """
-    Load html files.
-
     Args:
-        file_bytes: HTML content in bytes format.
-        file_name: file name.
+        html_content: HTML content in bytes format.
     """
 
-    def __init__(self, file_bytes: bytes, file_name: str):
+    def __init__(self, html_content: str):
         """Initialize with file bytes."""
-        self._file_bytes = file_bytes
-        self._file_name = file_name
+        self._file_bytes = html_content
 
     def extract(self) -> ExtractorResult:
         text = self._load_as_text()
         return ExtractorResult(
             md_content=text,
-            documents=[
-                Document(page_content=text, metadata={"source": self._file_name})
-            ],
         )
 
     def _load_as_text(self) -> str:
-        from io import BytesIO
-
-        text: str = ""
-        with BytesIO(self._file_bytes) as fp:
-            soup = BeautifulSoup(fp, "html.parser")
-            text = soup.get_text()
-            text = text.strip() if text else ""
-        return text
+        soup = BeautifulSoup(self._file_bytes, "html.parser")
+        text = soup.get_text()
+        return text.strip() if text else ""

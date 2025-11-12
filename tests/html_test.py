@@ -17,23 +17,16 @@ class MaskTestCase(unittest.TestCase):
           </body>
         </html>
         """
-        file_path = Path(__file__).parent / "sample.html"
-        file_path.write_text(html_content, encoding="utf-8")
 
-        # 读入文件内容
-        with open(file_path, "rb") as f:
-            file_bytes = f.read()
 
         # 调用 HtmlExtractor
-        extractor = HtmlExtractor(file_bytes=file_bytes, file_name=str(file_path))
+        extractor = HtmlExtractor(html_content=html_content)
         result = extractor.extract()
 
         # 断言结果
         self.assertIsInstance(result, ExtractorResult)
         self.assertIn("Hello World", result.md_content)
         self.assertIn("test@example.com", result.md_content)
-        self.assertIsInstance(result.documents[0], Document)
-        self.assertEqual(str(file_path), result.documents[0].metadata["source"])
 
 
 if __name__ == '__main__':

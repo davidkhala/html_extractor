@@ -9,16 +9,16 @@ description:
     en_US: Dify Extractor
   llm: Dify Extractor
 parameters:
-  - name: file
-    type: file
+  - name: html
+    type: string
     required: true
     label:
-      en_US: file
+      en_US: html text
     human_description:
-      en_US:  the file to be parsed (support pdf, xls, xlsx, md, markdown, mdx, htm, html, pptx, docx, csv, json, yaml, yml)
-      zh_Hans: 用于解析的文件 (支持 pdf, xls, xlsx, md, markdown, mdx, htm, html, pptx, docx, csv, json, yaml, yml)
-      pt_BR:  o arquivo a ser analisado (suporta pdf, xls, xlsx, md, markdown, mdx, htm, html, pptx, docx, csv, json, yaml, yml)
-    llm_description: the file to be parsed (support pdf, xls, xlsx, md, markdown, mdx, htm, html, pptx, docx, csv, json, yaml, yml)
+      en_US: the HTML content to be parsed
+      zh_Hans: 要解析的HTML字符串内容
+      pt_BR: o conteúdo HTML a ser analisado
+    llm_description: the HTML content to be parsed
     form: llm
 output_schema:
     type: object
