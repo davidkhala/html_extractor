@@ -1,0 +1,16 @@
+identity:
+  author: davidkhala
+  name: dify_extractor
+  label:
+    en_US: Dify Extractor
+    zh_Hans: Dify文本提取器
+  description:
+    en_US: Dify Extractor
+  icon: icon.svg
+  tags:
+    - rag
+tools:
+  - tools/dify_extractor.yaml
+extra:
+  python:
+    source: provider/dify_extractor.py
