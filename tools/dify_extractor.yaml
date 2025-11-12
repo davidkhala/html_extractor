@@ -21,18 +21,7 @@ parameters:
     llm_description: the HTML content to be parsed
     form: llm
 output_schema:
-    type: object
-    properties:
-      documents:
-        type: array
-        items:
-          type: object
-        description: the documents extracted from the file
-      images:
-        type: array
-        items:
-          type: object
-        description: The images extracted from the file
+
 extra:
   python:
     source: tools/dify_extractor.py

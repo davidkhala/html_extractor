@@ -1,3 +1,3 @@
-# dify_extractor
+# html_extractor
 **Author:** davidkhala
 **Type:** tool

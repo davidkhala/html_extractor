@@ -1,6 +1,6 @@
 identity:
   author: davidkhala
-  name: HTML_extractor
+  name: html_extractor
   label:
     en_US: HTML Extractor
     zh_Hans: HTML文本提取器
