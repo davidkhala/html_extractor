@@ -10,7 +10,7 @@ identity:
   tags:
     - rag
 tools:
-  - tools/dify_extractor.yaml
+  - tools/html_extractor.yaml
 extra:
   python:
-    source: provider/dify_extractor.py
+    source: provider/extractor.py

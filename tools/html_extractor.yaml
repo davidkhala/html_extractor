@@ -24,4 +24,4 @@ output_schema:
 
 extra:
   python:
-    source: tools/dify_extractor.py
+    source: tools/extractor.py

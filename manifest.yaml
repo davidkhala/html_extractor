@@ -13,7 +13,7 @@ resource:
   permission: {}
 plugins:
   tools:
-    - provider/dify_extractor.yaml
+    - provider/extractor.yaml
 meta:
   version: 0.0.1
   arch:
