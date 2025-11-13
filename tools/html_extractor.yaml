@@ -20,6 +20,30 @@ parameters:
       pt_BR: o conteúdo HTML a ser analisado
     llm_description: the HTML content to be parsed
     form: llm
+  - name: remove_header
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Remove <header> tag
+    human_description:
+      en_US: Whether to remove the <header> section from the HTML
+      zh_Hans: 是否移除HTML中的<header>部分
+      pt_BR: Remover a seção <header> do HTML
+    llm_description: Whether to remove the <header> section from the HTML
+    form: llm
+  - name: remove_footer
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Remove <footer> tag
+    human_description:
+      en_US: Whether to remove the <footer> section from the HTML
+      zh_Hans: 是否移除HTML中的<footer>部分
+      pt_BR: Remover a seção <footer> do HTML
+    llm_description: Whether to remove the <footer> section from the HTML
+    form: llm
 output_schema:
 
 extra:
