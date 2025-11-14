@@ -25,6 +25,8 @@ class HtmlExtractor(BaseExtractor):
         class_list = [cls.strip() for cls in classes_str.split(',') if cls.strip()]
         if class_list:
             for tag in soup.find_all(True):
+                if not tag.attrs:
+                    continue
                 tag_classes = tag.get('class', [])
                 if any(cls in tag_classes for cls in class_list):
                     tag.decompose()

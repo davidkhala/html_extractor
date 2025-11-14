@@ -9,6 +9,7 @@ identity:
   icon: icon.svg
   tags:
     - rag
+    - dataset
 tools:
   - tools/html_extractor.yaml
 extra:
