@@ -13,4 +13,4 @@ tools:
   - tools/html_extractor.yaml
 extra:
   python:
-    source: provider/extractor.py
+    source: provider/__init__.py

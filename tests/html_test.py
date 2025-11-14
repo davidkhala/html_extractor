@@ -17,7 +17,7 @@ class MaskTestCase(unittest.TestCase):
         </html>
         """
 
-        extractor = HtmlExtractor(html_content, False, False)
+        extractor = HtmlExtractor(html_content, "", "-")
         result = extractor.extract()
 
         self.assertIsInstance(result, ExtractorResult)
@@ -80,10 +80,14 @@ class MaskTestCase(unittest.TestCase):
 </html>
         """
 
-        no_footer = HtmlExtractor(html_content, False, True).extract().md_content
+        no_footer = HtmlExtractor(html_content, "", "-").extract().md_content
         self.assertNotIn("Copyright", no_footer)
-        no_header = HtmlExtractor(html_content, True, False).extract().md_content
+        no_header = HtmlExtractor(html_content, "-", "").extract().md_content
         self.assertNotIn("THEi 设计与建筑系", no_header)
-
+    def test_real_page(self):
+        with open("tests/fixtures/Bachelor of Engineering (Honours) in Building Services Engineering - Technological and Higher Education Institute of Hong Kong.html", 'r', encoding='utf-8') as f:
+            html_content = f.read()
+        clean = HtmlExtractor(html_content, "mobile-menu-wrapper", "-").extract().md_content
+        print(clean)
 if __name__ == '__main__':
     unittest.main()

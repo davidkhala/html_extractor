@@ -13,5 +13,10 @@ dependencies = [
     "pypdfium2~=4.30.0",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest"
+]
+
 [tool.uv]
 package = false
