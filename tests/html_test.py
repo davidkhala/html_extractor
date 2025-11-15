@@ -87,9 +87,14 @@ class MaskTestCase(unittest.TestCase):
     def test_real_page(self):
         with open("tests/fixtures/Bachelor of Engineering (Honours) in Building Services Engineering - Technological and Higher Education Institute of Hong Kong.html", 'r', encoding='utf-8') as f:
             html_content = f.read()
-        clean = HtmlExtractor(html_content, "mobile-menu-wrapper", "elementor-element").extract().md_content
+        clean = HtmlExtractor(html_content, "mobile-menu-wrapper, breadcrumbs-wrapper, popup-login-wrapper, toolbar", "footer,header-info-swapper,thim-widget-button,elementor-widget-social-icons").extract().md_content
         self.assertNotIn("About", clean)
         self.assertNotIn("Copyright", clean)
         self.assertNotIn("Apply now", clean)
+        self.assertIn("ST145103",clean)
+        self.assertIn("AECOM Asia Company Limited", clean)
+        self.assertIn("Fluid Mechanics", clean)
+        self.assertIn("4,230", clean)
+        print(clean)
 if __name__ == '__main__':
     unittest.main()

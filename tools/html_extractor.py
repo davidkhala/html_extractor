@@ -1,3 +1,5 @@
+import re
+
 from bs4 import BeautifulSoup, Tag
 
 from tools.document import ExtractorResult
@@ -44,4 +46,5 @@ class HtmlExtractor(BaseExtractor):
             HtmlExtractor.class_remover(soup, self.remove_footer)
 
         text = soup.get_text()
+        text = re.sub(r'\n{3,}', '\n\n', text) # 替换多个空行为单个空行
         return text.strip() if text else ""
