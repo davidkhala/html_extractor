@@ -3,7 +3,9 @@ name: Release Dify Plugin
 on:
   push:
     tags:
-      - 'v*'
+      - '*'
+permissions:
+  contents: write
 
 jobs:
   build-and-release:
@@ -20,17 +22,9 @@ jobs:
       - uses: davidkhala/build-dify-plugin@main
         with:
           pyproject-directory: .
-      - name: Get tag name
-        id: tag
-        run: |
-          TAG_NAME=${GITHUB_REF#refs/tags/}
-          echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
-      
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@master
         with:
           files: ${{ env.REPO_NAME }}.difypkg
           draft: false
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
