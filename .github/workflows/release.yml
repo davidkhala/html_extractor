@@ -2,34 +2,24 @@ name: Release Dify Plugin
 
 on:
   push:
-#    tags:
-#      - 'v*'
+    tags:
+      - 'v*'
 
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
     env:
       REPO_NAME: ${{ github.event.repository.name }}
-    
+
     steps:
       - uses: actions/checkout@main
       - uses: davidkhala/uv-buildpack@main
-      - name: Download dify-plugin-daemon
-        run: |
-          LATEST_RELEASE=$(curl -s https://api.github.com/repos/langgenius/dify-plugin-daemon/releases/latest)
-          DOWNLOAD_URL=$(echo $LATEST_RELEASE | jq -r '.assets[] | select(.name | contains("dify-plugin-linux-amd64")) | .browser_download_url' | head -1)
-          curl -L -o ../dify $DOWNLOAD_URL
-          chmod +x ../dify
-          ../dify --version
+
       - name: Generate requirements.txt (consumed by dify)
         run: uv pip compile pyproject.toml -o requirements.txt
-      
-      - name: Build Dify plugin package
-        run: |
-          cd ..
-          ./dify plugin package "$REPO_NAME"
-          mv "$REPO_NAME.difypkg" "${GITHUB_WORKSPACE}/$REPO_NAME.difypkg"
-      
+      - uses: davidkhala/build-dify-plugin@main
+        with:
+          pyproject-directory: .
       - name: Get tag name
         id: tag
         run: |
