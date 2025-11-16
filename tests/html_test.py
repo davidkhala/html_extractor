@@ -1,8 +1,7 @@
 import unittest
-from pathlib import Path
 
-from tools.document import Document, ExtractorResult
-from tools.html_extractor import HtmlExtractor  # 修改为实际路径
+from tools.document import ExtractorResult
+from tools.html_extractor import HtmlExtractor
 
 
 class MaskTestCase(unittest.TestCase):
@@ -85,7 +84,7 @@ class MaskTestCase(unittest.TestCase):
         no_header = HtmlExtractor(html_content, "-", "").extract().md_content
         self.assertNotIn("THEi 设计与建筑系", no_header)
     def test_real_page(self):
-        with open("tests/fixtures/Bachelor of Engineering (Honours) in Building Services Engineering - Technological and Higher Education Institute of Hong Kong.html", 'r', encoding='utf-8') as f:
+        with open("fixtures/Bachelor of Engineering (Honours) in Building Services Engineering - Technological and Higher Education Institute of Hong Kong.html", 'r', encoding='utf-8') as f:
             html_content = f.read()
         clean = HtmlExtractor(html_content, "mobile-menu-wrapper, breadcrumbs-wrapper, popup-login-wrapper, toolbar", "footer,header-info-swapper,thim-widget-button,elementor-widget-social-icons").extract().md_content
         self.assertNotIn("About", clean)
