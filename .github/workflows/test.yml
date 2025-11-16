@@ -9,3 +9,6 @@ jobs:
       - uses: davidkhala/uv-buildpack@main
         with:
           test-entry-point: pytest
+      - run: uv run --active main.py
+        timeout-minutes: 1
+        continue-on-error: true
