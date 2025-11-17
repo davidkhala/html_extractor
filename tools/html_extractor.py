@@ -1,6 +1,6 @@
 import re
 
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup
 
 from tools.document import ExtractorResult
 from tools.extractor_base import BaseExtractor
