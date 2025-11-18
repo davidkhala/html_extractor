@@ -46,5 +46,6 @@ class HtmlExtractor(BaseExtractor):
             HtmlExtractor.class_remover(soup, self.remove_footer)
 
         text = soup.get_text()
-        text = re.sub(r'\n{3,}', '\n\n', text) # 替换多个空行为单个空行
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        text = re.sub(r'(?<!\n)\n(?!\n)', '\n\n', text)
         return text.strip() if text else ""

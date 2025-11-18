@@ -24,26 +24,20 @@ parameters:
     type: string
     required: false
     label:
-      en_US: Remove <header> tag and <div> with specified class
+      en_US: header classes
     human_description:
-      en_US: Whether to remove the header section from the HTML
-      zh_Hans: 是否移除HTML中的header部分
-      pt_BR: Remover a seção header do HTML
-    llm_description: Whether to remove the header section from the HTML
+      en_US: header classes to be removed. concatenated by ','
+    llm_description: css classes concatenated by ','. <div> with specified classes will be remove. If not empty, <header> will be removed also
     form: llm
   - name: footer_class
     type: string
     required: false
     label:
-      en_US: Remove <footer> tag and <div> with specified class
+      en_US: footer classes
     human_description:
-      en_US: Whether to remove the footer section from the HTML
-      zh_Hans: 是否移除HTML中的footer部分
-      pt_BR: Remover a seção footer do HTML
-    llm_description: Whether to remove the footer section from the HTML
+      en_US: footer classes to be removed. concatenated by ','
+    llm_description: css classes concatenated by ','. <div> with specified classes will be remove. If not empty, <footer> will be removed also
     form: llm
-output_schema:
-
 extra:
   python:
     source: tools/__init__.py
