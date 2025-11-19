@@ -4,7 +4,7 @@ from tools.document import ExtractorResult
 from tools.html_extractor import HtmlExtractor
 
 
-class MaskTestCase(unittest.TestCase):
+class ExtractTestCase(unittest.TestCase):
     def test_html_extractor_parses_file(self):
         html_content = """
         <html>
@@ -83,16 +83,19 @@ class MaskTestCase(unittest.TestCase):
         self.assertNotIn("Copyright", no_footer)
         no_header = HtmlExtractor(html_content, "-", "").extract().text
         self.assertNotIn("THEi 设计与建筑系", no_header)
+
     def test_real_page(self):
-        with open("tests/fixtures/Bachelor of Engineering (Honours) in Building Services Engineering - Technological and Higher Education Institute of Hong Kong.html", 'r', encoding='utf-8') as f:
+        with open(
+                "fixtures/Bachelor of Engineering (Honours) in Building Services Engineering - Technological and Higher Education Institute of Hong Kong.html",
+                'r', encoding='utf-8') as f:
             html_content = f.read()
-        header_classes ="mobile-menu-wrapper, breadcrumbs-wrapper, popup-login-wrapper, toolbar"
+        header_classes = "mobile-menu-wrapper, breadcrumbs-wrapper, popup-login-wrapper, toolbar"
         footer_classes = 'footer,header-info-swapper,thim-widget-button,elementor-widget-social-icons'
         clean = HtmlExtractor(html_content, header_classes, footer_classes).extract().text
         self.assertNotIn("About", clean)
         self.assertNotIn("Copyright", clean)
         self.assertNotIn("Apply now", clean)
-        self.assertIn("ST145103",clean)
+        self.assertIn("ST145103", clean)
         self.assertIn("AECOM Asia Company Limited", clean)
         self.assertIn("Fluid Mechanics", clean)
         self.assertIn("4,230", clean)

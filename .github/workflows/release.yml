@@ -16,7 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@main
       - uses: davidkhala/uv-buildpack@main
-
       - name: Generate requirements.txt (consumed by dify)
         run: uv pip compile pyproject.toml -o requirements.txt
       - uses: davidkhala/build-dify-plugin@main
