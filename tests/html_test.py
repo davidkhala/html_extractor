@@ -20,8 +20,8 @@ class MaskTestCase(unittest.TestCase):
         result = extractor.extract()
 
         self.assertIsInstance(result, ExtractorResult)
-        self.assertIn("Hello World", result.md_content)
-        self.assertIn("test@example.com", result.md_content)
+        self.assertIn("Hello World", result.text)
+        self.assertIn("test@example.com", result.text)
 
     def test_thei_page(self):
         html_content = """
@@ -79,16 +79,16 @@ class MaskTestCase(unittest.TestCase):
 </html>
         """
 
-        no_footer = HtmlExtractor(html_content, "", "-").extract().md_content
+        no_footer = HtmlExtractor(html_content, "", "-").extract().text
         self.assertNotIn("Copyright", no_footer)
-        no_header = HtmlExtractor(html_content, "-", "").extract().md_content
+        no_header = HtmlExtractor(html_content, "-", "").extract().text
         self.assertNotIn("THEi 设计与建筑系", no_header)
     def test_real_page(self):
         with open("tests/fixtures/Bachelor of Engineering (Honours) in Building Services Engineering - Technological and Higher Education Institute of Hong Kong.html", 'r', encoding='utf-8') as f:
             html_content = f.read()
         header_classes ="mobile-menu-wrapper, breadcrumbs-wrapper, popup-login-wrapper, toolbar"
         footer_classes = 'footer,header-info-swapper,thim-widget-button,elementor-widget-social-icons'
-        clean = HtmlExtractor(html_content, header_classes, footer_classes).extract().md_content
+        clean = HtmlExtractor(html_content, header_classes, footer_classes).extract().text
         self.assertNotIn("About", clean)
         self.assertNotIn("Copyright", clean)
         self.assertNotIn("Apply now", clean)
@@ -97,8 +97,6 @@ class MaskTestCase(unittest.TestCase):
         self.assertIn("Fluid Mechanics", clean)
         self.assertIn("4,230", clean)
         print(clean)
-        with open("output.txt", "w", encoding="utf-8") as f:
-            f.write(clean)
 
 
 if __name__ == '__main__':

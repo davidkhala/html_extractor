@@ -19,7 +19,7 @@ class HtmlExtractor(BaseExtractor):
 
     def extract(self) -> ExtractorResult:
         return ExtractorResult(
-            md_content=self._load_as_text(),
+            text=self._load_as_text(),
         )
 
     @staticmethod
@@ -45,7 +45,6 @@ class HtmlExtractor(BaseExtractor):
                 tag.decompose()
             HtmlExtractor.class_remover(soup, self.remove_footer)
 
-        text = soup.get_text()
+        text = soup.get_text(separator='\n')
         text = re.sub(r'\n{3,}', '\n\n', text)
-        text = re.sub(r'(?<!\n)\n(?!\n)', '\n\n', text)
         return text.strip() if text else ""

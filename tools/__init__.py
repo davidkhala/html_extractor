@@ -16,6 +16,5 @@ class DifyExtractorTool(Tool):
         remove_footer = tool_parameters.get("footer_class")
 
         extractor = HtmlExtractor(html_content, remove_header, remove_footer)
-
-        extractor_result = extractor.extract()
-        yield self.create_text_message(extractor_result.md_content)
+        t = extractor.extract().text
+        yield self.create_text_message(t)
