@@ -1,7 +1,7 @@
 version: 0.0.3
 type: plugin
 author: davidkhala
-name: html_extractor
+name: html-extractor
 label:
   en_US: HTML Extractor
   zh_Hans: HTML 文本提取器
