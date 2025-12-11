@@ -1,6 +1,6 @@
 import unittest
 
-from tools.document import ExtractorResult
+from tools.models import ExtractorResult
 from tools.html_extractor import HtmlExtractor
 
 
@@ -89,7 +89,7 @@ class ExtractTestCase(unittest.TestCase):
                 "fixtures/Bachelor of Engineering (Honours) in Building Services Engineering - Technological and Higher Education Institute of Hong Kong.html",
                 'r', encoding='utf-8') as f:
             html_content = f.read()
-        header_classes = "mobile-menu-wrapper, breadcrumbs-wrapper, popup-login-wrapper, toolbar"
+        header_classes = 'mobile-menu-wrapper, breadcrumbs-wrapper, popup-login-wrapper, toolbar'
         footer_classes = 'footer,header-info-swapper,thim-widget-button,elementor-widget-social-icons'
         clean = HtmlExtractor(html_content, header_classes, footer_classes).extract().text
         self.assertNotIn("About", clean)
@@ -101,6 +101,23 @@ class ExtractTestCase(unittest.TestCase):
         self.assertIn("4,230", clean)
         print(clean)
 
+    def test_home_page(self):
+        with open(
+                "fixtures/Home - Technological and Higher Education Institute of Hong Kong.html",
+                'r', encoding='utf-8') as f:
+            html_content = f.read()
 
+        header_classes = 'mobile-menu-wrapper, breadcrumbs-wrapper, popup-login-wrapper, toolbar'
+        footer_classes = 'footer,header-info-swapper,thim-widget-button,elementor-widget-social-icons'
+        clean = HtmlExtractor(html_content, header_classes, footer_classes).extract().text
+        self.assertNotIn("About", clean)
+        self.assertNotIn("Copyright", clean)
+        self.assertIn("Current Students", clean)
+        self.assertIn("Departments", clean)
+        self.assertIn("7 Academic Areas", clean)
+        self.assertIn("student admission", clean)
+        self.assertIn("student admission", clean)
+        self.assertIn("Undergraduate Programmes", clean)
+        print(clean)
 if __name__ == '__main__':
     unittest.main()

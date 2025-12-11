@@ -2,11 +2,10 @@ import re
 
 from bs4 import BeautifulSoup
 
-from tools.document import ExtractorResult
-from tools.extractor_base import BaseExtractor
+from tools.models import ExtractorResult
 
 
-class HtmlExtractor(BaseExtractor):
+class HtmlExtractor:
     def __init__(self, html_content: str, remove_header: str, remove_footer: str):
         """
         :param html_content: HTML content in str.
